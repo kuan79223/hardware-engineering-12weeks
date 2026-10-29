@@ -71,3 +71,14 @@ All five experiments produced the expected DC operating point results.
 **Physical Hardware: NOT TESTED**
 
 The results are based on ideal resistor models and DC circuit simulation. Component tolerances, noise, temperature effects, and physical measurement errors have not yet been evaluated.
+
+## Simulation Screenshots
+
+### D01 - Basic Voltage Divider
+![D01](images/D01_Basic_Divider.png)
+
+### D03 - Loading Effect
+![D03](images/D03_Loading_Effect.png)
+
+### D05 - High Impedance Load
+![D05](images/D05_High_Impedance.png)
