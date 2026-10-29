@@ -137,3 +137,85 @@ The RC time constant is calculated as:
 - Demonstrated transient simulation, waveform measurement, and theoretical verification using LTspice.
 
 **Tools:** LTspice, Transient Analysis, Waveform Cursor
+
+## W01_D07 — RC Low-Pass Filter
+
+### 1. Objective
+
+Analyze the frequency response of a first-order RC low-pass filter using LTspice AC analysis and verify its theoretical cutoff frequency.
+
+### 2. Circuit Parameters
+
+| Parameter | Value |
+|---|---|
+| Input Voltage | AC 1 V |
+| Resistance (R1) | 10 kΩ |
+| Capacitance (C1) | 10 nF |
+| Analysis Type | AC Sweep |
+| Frequency Range | 10 Hz – 1 MHz |
+| Points per Decade | 100 |
+
+**Simulation Command**
+
+```text
+.ac dec 100 10 1Meg
+```
+
+### 3. Circuit Schematic
+
+![RC Low-Pass Circuit](images/W01_D07_RC_Circuit.png)
+
+### 4. Frequency Response
+
+![RC Low-Pass Bode Plot](images/W01_D07_RC_BodePlot.png)
+
+The filter passes low-frequency signals with minimal attenuation and progressively attenuates higher-frequency signals.
+
+### 5. Cutoff Frequency Calculation
+
+The theoretical cutoff frequency is:
+
+\[
+f_c = \frac{1}{2\pi RC}
+\]
+
+Given R = 10 kΩ and C = 10 nF:
+
+\[
+f_c \approx 1591.5494\ \text{Hz}
+\]
+
+At the cutoff frequency, the ideal gain is approximately −3.0103 dB and the phase shift is −45°.
+
+### 6. Measurement Results
+
+| Parameter | Theoretical | LTspice Measurement |
+|---|---|---|
+| Cutoff Frequency | 1591.5494 Hz | 1593.4839 Hz |
+| Gain | −3.0103 dB | −3.0158 dB |
+| Phase Shift | −45° | −45.0348° |
+
+**Cutoff Frequency Measurement**
+
+![RC Cutoff Frequency](images/W01_D07_RC_Cutoff_3dB.png)
+
+### 7. Error Analysis
+
+The relative frequency difference is:
+
+\[
+Error = \frac{|1593.4839 - 1591.5494|}{1591.5494}\times100\%
+\]
+
+**Relative Difference ≈ 0.122%**
+
+This small difference is primarily associated with the selected frequency sweep point and cursor position, rather than component tolerance.
+
+### 8. Conclusion
+
+- Successfully designed and simulated a first-order RC low-pass filter.
+- Verified the theoretical cutoff frequency of approximately 1.59 kHz.
+- Confirmed the −3 dB magnitude response and −45° phase shift near the cutoff frequency.
+- Practiced AC sweep analysis, Bode plot interpretation, and waveform cursor measurement in LTspice.
+
+**Tools:** LTspice, AC Analysis, Bode Plot, Frequency Response Measurement.
