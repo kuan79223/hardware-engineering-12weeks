@@ -40,11 +40,11 @@ Compare the forward voltage and current characteristics of a silicon diode (1N41
 
 **1. 1N4148 with 1kΩ Resistor**
 
-![Diode 1k Operating Point](images/W02_D02_Diode_1k_OP.png)
+![Diode 1k Operating Point](images/W02_D02_1k_OperatingPoint.png)
 
 **2. 1N4148 with 330Ω Resistor**
 
-![Diode 330ohm Operating Point](images/W02_D02_Diode_330ohm_OP.png)
+![Diode 330ohm Operating Point](images/W02_D02_330ohm_OperatingPoint.png)
 
 **3. QTLP690C LED with 330Ω Resistor**
 
