@@ -219,3 +219,92 @@ This small difference is primarily associated with the selected frequency sweep 
 - Practiced AC sweep analysis, Bode plot interpretation, and waveform cursor measurement in LTspice.
 
 **Tools:** LTspice, AC Analysis, Bode Plot, Frequency Response Measurement.
+
+## W01_D08 — RC High-Pass Filter
+
+### 1. Objective
+
+Design and simulate a first-order RC high-pass filter using LTspice AC analysis. Verify the theoretical cutoff frequency, gain, and phase response.
+
+### 2. Circuit Parameters
+
+| Parameter | Value |
+|---|---|
+| Input Voltage | AC 1 V |
+| Capacitor (C1) | 10 nF |
+| Resistor (R1) | 10 kΩ |
+| Analysis Type | AC Sweep |
+| Frequency Range | 10 Hz – 1 MHz |
+| Points per Decade | 100 |
+
+**Simulation Command**
+
+```text
+.ac dec 100 10 1Meg
+```
+
+### 3. Circuit Schematic
+
+![RC High-Pass Circuit](images/W01_D08_RC_Circuit.png)
+
+The capacitor is connected in series with the input signal, and the resistor is connected between the output node and ground.
+
+### 4. Theoretical Analysis
+
+The cutoff frequency is calculated as:
+
+**fc = 1 / (2πRC)**
+
+Substituting R = 10 kΩ and C = 10 nF:
+
+**fc ≈ 1591.5494 Hz**
+
+At the theoretical cutoff frequency:
+
+- Gain: −3.0103 dB
+- Phase: +45°
+- Voltage ratio: approximately 0.7071
+
+### 5. Simulation Results
+
+| Parameter | Theoretical Cutoff | LTspice Cursor |
+|---|---:|---:|
+| Frequency | 1591.5494 Hz | 1584.8932 Hz |
+| Gain | −3.0103 dB | −3.0285394 dB |
+| Phase | +45° | +45.120063° |
+
+**Cutoff Frequency Measurement**
+
+![RC High-Pass Cutoff](images/W01_D08_RC_Cutoff_3dB.png)
+
+### 6. Frequency Difference Analysis
+
+Relative frequency difference:
+
+**|1584.8932 − 1591.5494| / 1591.5494 × 100% ≈ 0.418%**
+
+The selected cursor frequency is slightly below the theoretical cutoff frequency. Therefore, the measured gain and phase differ slightly from the ideal cutoff values.
+
+This difference should not be interpreted as a physical component tolerance error.
+
+### 7. Low-Pass vs. High-Pass Comparison
+
+| Parameter | D07 Low-Pass | D08 High-Pass |
+|---|---|---|
+| Circuit Configuration | Series R, shunt C | Series C, shunt R |
+| Low-Frequency Response | Pass | Attenuate |
+| High-Frequency Response | Attenuate | Pass |
+| Theoretical Cutoff | 1591.55 Hz | 1591.55 Hz |
+| Measured Cursor Frequency | 1593.4839 Hz | 1584.8932 Hz |
+| Measured Gain | −3.0158 dB | −3.0285 dB |
+| Measured Phase | −45.0348° | +45.1201° |
+
+### 8. Conclusion
+
+- Successfully designed and simulated an RC high-pass filter.
+- Verified the theoretical cutoff frequency near 1.59 kHz.
+- Confirmed the expected −3 dB gain and +45° phase near the cutoff frequency.
+- Compared low-pass and high-pass frequency responses using identical resistor and capacitor values.
+- Practiced LTspice AC analysis, Bode plot interpretation, and frequency response measurement.
+
+**Tools:** LTspice, AC Analysis, Bode Plot, Cursor Measurement.
