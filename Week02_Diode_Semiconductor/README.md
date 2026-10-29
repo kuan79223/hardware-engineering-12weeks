@@ -15,3 +15,50 @@
 
 ### Conclusion
 The simulated diode exhibits nonlinear forward conduction. Its forward current increases rapidly with applied forward voltage, while reverse current remains negligible within the tested voltage range.
+
+## W02_D02 — Diode Forward Voltage & LED Current Limiting
+
+### Objective
+Compare the forward voltage and current characteristics of a silicon diode (1N4148) and an LED (QTLP690C) under different current-limiting resistor values.
+
+### Simulation Setup
+- Software: LTspice
+- Analysis: DC Operating Point (`.op`)
+- DC Supply: 5V
+- Resistors: 1kΩ and 330Ω
+- Components: 1N4148, QTLP690C LED
+
+### Simulation Results
+
+| Component | Resistance | Forward Voltage (Vf) | Forward Current (If) |
+|---|---|---|---|
+| 1N4148 | 1kΩ | 0.653229 V | 4.34677 mA |
+| 1N4148 | 330Ω | 0.707815 V | 13.0066 mA |
+| QTLP690C LED | 330Ω | 1.84239 V | 9.56852 mA |
+
+### Simulation Screenshots
+
+**1. 1N4148 with 1kΩ Resistor**
+
+![Diode 1k Operating Point](images/W02_D02_Diode_1k_OP.png)
+
+**2. 1N4148 with 330Ω Resistor**
+
+![Diode 330ohm Operating Point](images/W02_D02_Diode_330ohm_OP.png)
+
+**3. QTLP690C LED with 330Ω Resistor**
+
+![LED 330ohm Operating Point](images/W02_D02_LED_330ohm_OP.png)
+
+### Analysis
+
+1. Reducing the resistor from 1kΩ to 330Ω increased the 1N4148 forward current from 4.35mA to 13.01mA.
+2. The forward voltage of the 1N4148 increased from 0.653V to 0.708V.
+3. With the same 330Ω resistor, the QTLP690C LED exhibited a higher forward voltage and lower current than the 1N4148.
+4. Kirchhoff's Voltage Law (KVL) was verified using the simulated voltage and current values.
+
+### Conclusion
+
+The experiment demonstrates the importance of current-limiting resistors in diode circuits. Different diode types exhibit different forward voltage characteristics, which directly affect circuit current.
+
+All results were obtained through LTspice simulation.
