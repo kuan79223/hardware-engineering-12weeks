@@ -1,310 +1,91 @@
-# Week 01 — LTspice Circuit Simulation
+# Week 01 — LTspice Circuit Fundamentals
 
-## 1. Objective
+**Focus:** DC circuit analysis, RC transient response, first-order RC filters, and RLC series resonance.  
+**Tools:** LTspice 26 | `.op` DC Operating Point | `.tran` Transient Analysis | `.ac` AC Sweep  
+**Verification:** Theoretical calculations compared with LTspice simulations. **Physical hardware testing was not performed.**
 
-Learn fundamental circuit analysis using LTspice, including DC voltage division, resistor networks, loading effects, and DC operating point verification.
+## 1. Experiment Index
 
-## 2. Development Environment
-
-| Item | Description |
-|---|---|
-| Simulation Software | LTspice 26 |
-| Analysis Method | DC Operating Point (.op) |
-| Input Voltage | 5 V DC |
-| Verification | Theoretical Calculation vs. SPICE Simulation |
-| Hardware Testing | Not performed |
-
-## 3. Experiment Results
-
-| Experiment | R1 | R2 | R3 (Load) | Simulated VOUT |
-|---|---|---|---|---|
-| D01 — Basic Voltage Divider | 1kΩ | 1kΩ | None | 2.500 V |
-| D02 — Divider Ratio | 1kΩ | 2kΩ | None | 3.333 V |
-| D03 — Loading Effect | 1kΩ | 2kΩ | 2kΩ | 2.500 V |
-| D04 — Load Comparison | 1kΩ | 2kΩ | 10kΩ | 3.125 V |
-| D05 — High-Impedance Load | 1kΩ | 2kΩ | 100kΩ | 3.311 V |
-
-## 4. Circuit Analysis
-
-For an unloaded voltage divider:
-
-VOUT = VIN × R2 / (R1 + R2)
-
-When a load resistor R3 is connected in parallel with R2:
-
-Req = R2 × R3 / (R2 + R3)
-
-VOUT = VIN × Req / (R1 + Req)
-
-The simulation results matched the theoretical calculations within the displayed numerical precision.
-
-## 5. Key Findings
-
-**Voltage Divider Behavior**
-
-The output voltage depends on the resistance ratio between R1 and R2.
-
-**Loading Effect**
-
-Connecting a load resistor in parallel with R2 reduces the equivalent resistance and changes the output voltage.
-
-**Load Impedance**
-
-With R1 = 1kΩ and R2 = 2kΩ, the unloaded output was approximately 3.333 V. A 2kΩ load reduced the output to 2.500 V, while a 100kΩ load resulted in approximately 3.311 V.
-
-**Kirchhoff's Current Law**
-
-The current through R1 equals the sum of the currents through R2 and R3.
-
-## 6. Engineering Relevance
-
-This experiment demonstrates principles applicable to voltage sensing, resistor networks, and the preliminary design of MCU ADC input circuits.
-
-Actual ADC applications additionally require consideration of source impedance, sampling capacitance, acquisition time, and device specifications.
-
-## 7. Verification Status
-
-**Simulation: PASS**
-
-All five experiments produced the expected DC operating point results.
-
-**Physical Hardware: NOT TESTED**
-
-The results are based on ideal resistor models and DC circuit simulation. Component tolerances, noise, temperature effects, and physical measurement errors have not yet been evaluated.
-
-## Simulation Screenshots
-
-### D01 - Basic Voltage Divider
-![D01](images/D01_Basic_Divider.png)
-
-### D03 - Loading Effect
-![D03](images/D03_Loading_Effect.png)
-
-### D05 - High Impedance Load
-![D05](images/D05_High_Impedance.png)
-
-## W01_D06 — RC Charging & Discharging
-
-### 1. Objective
-Verify the charging and discharging characteristics of an RC circuit using LTspice transient analysis.
-
-### 2. Circuit Parameters
-
-| Parameter | Value |
-|---|---|
-| Input Voltage | 0–5 V |
-| Resistance | 10 kΩ |
-| Capacitance | 10 µF |
-| Time Constant (τ) | 100 ms |
-| Simulation Duration | 2 s |
-| Input Signal | PULSE(0 5 0 1u 1u 500m 1) |
-| Transient Command | .tran 0 2 0 1m |
-
-### 3. Circuit Schematic
-
-![RC Circuit](images/W01_D06_RC_Circuit.png)
-
-### 4. Simulation Waveform
-
-![RC Charging and Discharging](images/W01_D06_RC_Waveform.png)
-
-### 5. Measurement Results
-
-The RC time constant is calculated as:
-
-**τ = R × C = 10 kΩ × 10 µF = 100 ms**
-
-| Measurement | Cursor Time | Theoretical Voltage | Simulated Voltage |
+| ID | Experiment | Main Result | Source |
 |---|---|---|---|
-| Charging (1τ) | 100.27248 ms | 3.165608 V | 3.1656134 V |
-| Discharging (1τ) | 600.01 ms | 1.826821 V | 1.8268337 V |
+| D01 | Basic Voltage Divider | Vout = 2.500 V | [ASC](W01_D01_VoltageDivider.asc) |
+| D02 | Voltage Divider Ratio | Vout = 3.333 V | [ASC](W01_D02_Voltage_Ratio.asc) |
+| D03 | Loading Effect (2 kΩ load) | Vout = 2.500 V | [ASC](W01_D03_Voltage_Effect.asc) |
+| D04 | Load Comparison (10 kΩ load) | Vout = 3.125 V | [ASC](W01_D04_Load_Comparison.asc) |
+| D05 | High-Impedance Load (100 kΩ) | Vout = 3.311 V | [ASC](W01_D05_High_Impedance.asc) |
+| D06 | RC Charging / Discharging | Time constant: 100 ms | [ASC](W01_D06_RC_Charging_Discharging.asc) |
+| D07 | RC Low-Pass Filter | Cutoff: ≈ 1.59 kHz | [ASC](W01_D07_RC_LowPass_Filter.asc) |
+| D08 | RC High-Pass Filter | Cutoff: ≈ 1.59 kHz | [ASC](W01_D08_RC_HighPass_Filter.asc) |
+| D09 | RLC Series Resonance | Resonance: ≈ 1.073 kHz | [ASC](W01_D09_RLC_Series_Resonance.asc) |
 
-*Theoretical values are calculated using the actual cursor timestamps and ideal RC equations.*
+*D01–D05 used a 5 V DC source. For D01–D05, the values above are LTspice DC simulation outputs.*
 
-**Charging Measurement**
+## 2. Selected Results
 
-![Charging 100ms](images/W01_D06_RC_Charging_100ms.png)
+### DC Voltage Divider and Loading (D01–D05)
 
-**Discharging Measurement**
+An unloaded divider follows `Vout = Vin × R2 / (R1 + R2)`. With load resistance `R3` connected across `R2`, replace `R2` by `Req = R2 || R3`. A lower load impedance reduces Vout; a 100 kΩ load leaves the output close to the unloaded 3.333 V.
 
-![Discharging 600ms](images/W01_D06_RC_Discharging_600ms.png)
+![D03 loading effect](images/D03_Loading_Effect.png)
 
-### 6. Conclusion
+### RC Transient Response (D06)
 
-- Verified the exponential charging and discharging behavior of an RC circuit.
-- Confirmed the theoretical time constant of 100 ms.
-- Observed approximately 63.2% charging and 36.8% remaining voltage after one time constant.
-- Demonstrated transient simulation, waveform measurement, and theoretical verification using LTspice.
+`R = 10 kΩ`, `C = 10 µF`; theoretical time constant `τ = RC = 100 ms`. Source: `PULSE(0 5 0 1u 1u 500m 1)`; transient analysis: `.tran 0 2 0 1m`.
 
-**Tools:** LTspice, Transient Analysis, Waveform Cursor
+| Measurement | Cursor Time | Ideal RC Calculation | LTspice |
+|---|---:|---:|---:|
+| Charging | 100.27248 ms | 3.165608 V | 3.1656134 V |
+| Discharging | 600.01 ms | 1.826821 V | 1.8268337 V |
 
-## W01_D07 — RC Low-Pass Filter
+*The discharge calculation accounts for the capacitor voltage reached before the falling edge; it does not assume an exactly 5 V initial capacitor voltage.*
 
-### 1. Objective
+![D06 RC transient waveform](images/W01_D06_RC_Waveform.png)
 
-Analyze the frequency response of a first-order RC low-pass filter using LTspice AC analysis and verify its theoretical cutoff frequency.
+### RC Frequency Response (D07–D08)
 
-### 2. Circuit Parameters
+Both filters use `R = 10 kΩ`, `C = 10 nF`, and AC input amplitude `1 V`. The theoretical cutoff frequency is `fc = 1 / (2πRC) = 1591.5494 Hz`.
 
-| Parameter | Value |
-|---|---|
-| Input Voltage | AC 1 V |
-| Resistance (R1) | 10 kΩ |
-| Capacitance (C1) | 10 nF |
-| Analysis Type | AC Sweep |
-| Frequency Range | 10 Hz – 1 MHz |
-| Points per Decade | 100 |
-
-**Simulation Command**
-
-```text
-.ac dec 100 10 1Meg
-```
-
-### 3. Circuit Schematic
-
-![RC Low-Pass Circuit](images/W01_D07_RC_Circuit.png)
-
-### 4. Frequency Response
-
-![RC Low-Pass Bode Plot](images/W01_D07_RC_BodePlot.png)
-
-The filter passes low-frequency signals with minimal attenuation and progressively attenuates higher-frequency signals.
-
-### 5. Cutoff Frequency Calculation
-
-The theoretical cutoff frequency is:
-
-\[
-f_c = \frac{1}{2\pi RC}
-\]
-
-Given R = 10 kΩ and C = 10 nF:
-
-\[
-f_c \approx 1591.5494\ \text{Hz}
-\]
-
-At the cutoff frequency, the ideal gain is approximately −3.0103 dB and the phase shift is −45°.
-
-### 6. Measurement Results
-
-| Parameter | Theoretical | LTspice Measurement |
-|---|---|---|
-| Cutoff Frequency | 1591.5494 Hz | 1593.4839 Hz |
-| Gain | −3.0103 dB | −3.0158 dB |
-| Phase Shift | −45° | −45.0348° |
-
-**Cutoff Frequency Measurement**
-
-![RC Cutoff Frequency](images/W01_D07_RC_Cutoff_3dB.png)
-
-### 7. Error Analysis
-
-The relative frequency difference is:
-
-\[
-Error = \frac{|1593.4839 - 1591.5494|}{1591.5494}\times100\%
-\]
-
-**Relative Difference ≈ 0.122%**
-
-This small difference is primarily associated with the selected frequency sweep point and cursor position, rather than component tolerance.
-
-### 8. Conclusion
-
-- Successfully designed and simulated a first-order RC low-pass filter.
-- Verified the theoretical cutoff frequency of approximately 1.59 kHz.
-- Confirmed the −3 dB magnitude response and −45° phase shift near the cutoff frequency.
-- Practiced AC sweep analysis, Bode plot interpretation, and waveform cursor measurement in LTspice.
-
-**Tools:** LTspice, AC Analysis, Bode Plot, Frequency Response Measurement.
-
-## W01_D08 — RC High-Pass Filter
-
-### 1. Objective
-
-Design and simulate a first-order RC high-pass filter using LTspice AC analysis. Verify the theoretical cutoff frequency, gain, and phase response.
-
-### 2. Circuit Parameters
-
-| Parameter | Value |
-|---|---|
-| Input Voltage | AC 1 V |
-| Capacitor (C1) | 10 nF |
-| Resistor (R1) | 10 kΩ |
-| Analysis Type | AC Sweep |
-| Frequency Range | 10 Hz – 1 MHz |
-| Points per Decade | 100 |
-
-**Simulation Command**
-
-```text
-.ac dec 100 10 1Meg
-```
-
-### 3. Circuit Schematic
-
-![RC High-Pass Circuit](images/W01_D08_RC_Circuit.png)
-
-The capacitor is connected in series with the input signal, and the resistor is connected between the output node and ground.
-
-### 4. Theoretical Analysis
-
-The cutoff frequency is calculated as:
-
-**fc = 1 / (2πRC)**
-
-Substituting R = 10 kΩ and C = 10 nF:
-
-**fc ≈ 1591.5494 Hz**
-
-At the theoretical cutoff frequency:
-
-- Gain: −3.0103 dB
-- Phase: +45°
-- Voltage ratio: approximately 0.7071
-
-### 5. Simulation Results
-
-| Parameter | Theoretical Cutoff | LTspice Cursor |
+| Measurement | D07: Low-Pass | D08: High-Pass |
 |---|---:|---:|
-| Frequency | 1591.5494 Hz | 1584.8932 Hz |
-| Gain | −3.0103 dB | −3.0285394 dB |
-| Phase | +45° | +45.120063° |
+| Cursor Frequency | 1593.4839 Hz | 1584.8932 Hz |
+| Cursor Gain | −3.0158 dB | −3.0285394 dB |
+| Cursor Phase | −45.0348° | +45.120063° |
+| Expected Response | Pass low frequencies | Pass high frequencies |
 
-**Cutoff Frequency Measurement**
+*The exact theoretical half-power response is −3.0103 dB. Small cursor discrepancies reflect the selected sweep frequencies / cursor placement, not measured component tolerances.*
 
-![RC High-Pass Cutoff](images/W01_D08_RC_Cutoff_3dB.png)
+![D07 low-pass Bode plot](images/W01_D07_RC_BodePlot.png)
 
-### 6. Frequency Difference Analysis
+![D08 high-pass cutoff measurement](images/W01_D08_RC_Cutoff_3dB.png)
 
-Relative frequency difference:
+### RLC Series Resonance (D09)
 
-**|1584.8932 − 1591.5494| / 1591.5494 × 100% ≈ 0.418%**
+`L = 10 mH`, `C = 2.2 µF`, `R = 10 Ω`, with AC input amplitude `1 V`; output was measured across `R`.
 
-The selected cursor frequency is slightly below the theoretical cutoff frequency. Therefore, the measured gain and phase differ slightly from the ideal cutoff values.
+| Parameter | Theoretical | LTspice / Cursor |
+|---|---:|---:|
+| Resonance `f0 = 1/(2π√LC)` | 1073.022 Hz | ≈ 1.073 kHz (peak observed) |
+| Lower half-power frequency `f1` | 996.392 Hz | 996.291 Hz |
+| Upper half-power frequency `f2` | 1155.547 Hz | 1155.480 Hz |
+| Bandwidth `BW = f2 − f1` | 159.155 Hz | 159.189 Hz |
+| Quality factor `Q = f0/BW` | 6.742 | ≈ 6.741 (using theoretical f0) |
 
-This difference should not be interpreted as a physical component tolerance error.
+*Cursor gains were approximately −3.0167 dB and −3.0074 dB, close to the −3.0103 dB half-power target. The narrow-band cursor measurements are not an independently measured exact resonance peak.*
 
-### 7. Low-Pass vs. High-Pass Comparison
+![D09 RLC bandwidth measurement](images/W01_D09_RLC_Bandwidth.png)
 
-| Parameter | D07 Low-Pass | D08 High-Pass |
-|---|---|---|
-| Circuit Configuration | Series R, shunt C | Series C, shunt R |
-| Low-Frequency Response | Pass | Attenuate |
-| High-Frequency Response | Attenuate | Pass |
-| Theoretical Cutoff | 1591.55 Hz | 1591.55 Hz |
-| Measured Cursor Frequency | 1593.4839 Hz | 1584.8932 Hz |
-| Measured Gain | −3.0158 dB | −3.0285 dB |
-| Measured Phase | −45.0348° | +45.1201° |
+## 3. Engineering Takeaways and Limits
 
-### 8. Conclusion
+- Verified DC voltage division and the effect of load impedance on a resistor network.
+- Compared ideal RC time-domain behavior with transient waveforms and cursor measurements.
+- Compared low-pass and high-pass magnitude/phase responses around their −3 dB cutoff points.
+- Verified RLC resonance, bandwidth, and quality factor using AC Sweep and dual cursors.
+- **Scope:** simulation with ideal components only; no bench measurements, component tolerance study, noise analysis, temperature sweep, or ADC input-circuit validation.
 
-- Successfully designed and simulated an RC high-pass filter.
-- Verified the theoretical cutoff frequency near 1.59 kHz.
-- Confirmed the expected −3 dB gain and +45° phase near the cutoff frequency.
-- Compared low-pass and high-pass frequency responses using identical resistor and capacitor values.
-- Practiced LTspice AC analysis, Bode plot interpretation, and frequency response measurement.
+## 4. Reproduce the Simulations
 
-**Tools:** LTspice, AC Analysis, Bode Plot, Cursor Measurement.
+1. Open any linked `.asc` file in LTspice.
+2. Run the analysis command included in that schematic (`.op`, `.tran`, or `.ac`).
+3. Inspect node voltages and use waveform cursors to compare with the reported values.
+
+Raw simulation data (`.raw`) and autogenerated logs (`.log`) are intentionally omitted from this portfolio.
