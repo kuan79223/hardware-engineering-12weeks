@@ -82,3 +82,58 @@ The results are based on ideal resistor models and DC circuit simulation. Compon
 
 ### D05 - High Impedance Load
 ![D05](images/D05_High_Impedance.png)
+
+## W01_D06 — RC Charging & Discharging
+
+### 1. Objective
+Verify the charging and discharging characteristics of an RC circuit using LTspice transient analysis.
+
+### 2. Circuit Parameters
+
+| Parameter | Value |
+|---|---|
+| Input Voltage | 0–5 V |
+| Resistance | 10 kΩ |
+| Capacitance | 10 µF |
+| Time Constant (τ) | 100 ms |
+| Simulation Duration | 2 s |
+| Input Signal | PULSE(0 5 0 1u 1u 500m 1) |
+| Transient Command | .tran 0 2 0 1m |
+
+### 3. Circuit Schematic
+
+![RC Circuit](images/W01_D06_RC_Circuit.png)
+
+### 4. Simulation Waveform
+
+![RC Charging and Discharging](images/W01_D06_RC_Waveform.png)
+
+### 5. Measurement Results
+
+The RC time constant is calculated as:
+
+**τ = R × C = 10 kΩ × 10 µF = 100 ms**
+
+| Measurement | Cursor Time | Theoretical Voltage | Simulated Voltage |
+|---|---|---|---|
+| Charging (1τ) | 100.27248 ms | 3.165608 V | 3.1656134 V |
+| Discharging (1τ) | 600.01 ms | 1.826821 V | 1.8268337 V |
+
+*Theoretical values are calculated using the actual cursor timestamps and ideal RC equations.*
+
+**Charging Measurement**
+
+![Charging 100ms](images/W01_D06_RC_Charging_100ms.png)
+
+**Discharging Measurement**
+
+![Discharging 600ms](images/W01_D06_RC_Discharging_600ms.png)
+
+### 6. Conclusion
+
+- Verified the exponential charging and discharging behavior of an RC circuit.
+- Confirmed the theoretical time constant of 100 ms.
+- Observed approximately 63.2% charging and 36.8% remaining voltage after one time constant.
+- Demonstrated transient simulation, waveform measurement, and theoretical verification using LTspice.
+
+**Tools:** LTspice, Transient Analysis, Waveform Cursor
