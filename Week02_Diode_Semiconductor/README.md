@@ -137,4 +137,39 @@ The average output voltage is higher than that of the half-wave rectifier, while
 
 A smoothing capacitor will be investigated in a subsequent experiment.
 
+## W02_D05 – Rectifier with Smoothing Capacitor
+
+### Objective
+Investigate the effect of smoothing capacitors on the output voltage ripple of a full-wave bridge rectifier.
+
+### Simulation Setup
+- Simulator: LTspice
+- Input: SINE(0 12 60)
+- Diodes: 1N4007 × 4
+- Load Resistance: 1kΩ
+- Capacitor Values: 10µF, 100µF, 470µF
+- Transient Analysis: 200ms
+- Measurement Window: 100ms–200ms
+
+### Circuit Diagram
+![Circuit](images/W02_D05_Circuit.png)
+
+### Capacitor Sweep Results
+![Waveforms](images/W02_D05_Capacitor_Sweep.png)
+
+### Measurement Results
+![Measurements](images/W02_D05_Measurement.png)
+
+| Capacitance | Vmax (V) | Vmin (V) | Ripple Vpp (V) | Vavg (V) |
+|---|---:|---:|---:|---:|
+| 10µF | 10.649 | 6.163 | 4.486 | 8.563 |
+| 100µF | 10.592 | 9.883 | 0.710 | 10.250 |
+| 470µF | 10.508 | 10.349 | 0.159 | 10.429 |
+
+### Conclusion
+- Increasing capacitance significantly reduces the output voltage ripple.
+- The 470µF capacitor achieved approximately 96.5% ripple reduction compared with 10µF.
+- Larger capacitors maintain a more stable DC output by supplying energy to the load between rectified voltage peaks.
+- Practical capacitor selection must also consider inrush current, voltage rating, size, and cost.
+
 
