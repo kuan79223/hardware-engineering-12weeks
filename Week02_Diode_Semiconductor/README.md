@@ -172,4 +172,49 @@ Investigate the effect of smoothing capacitors on the output voltage ripple of a
 - Larger capacitors maintain a more stable DC output by supplying energy to the load between rectified voltage peaks.
 - Practical capacitor selection must also consider inrush current, voltage rating, size, and cost.
 
+## W02_D06 – Zener Diode Voltage Regulator
+
+### Objective
+Investigate Zener diode voltage regulation under different load resistance conditions using LTspice.
+
+### Simulation Setup
+- Input Voltage: DC Sweep 0–15V
+- Series Resistor: 470Ω
+- Zener Diode Model: `DZEN (BV=5.1 IBV=5m Rs=2)`
+- Load Resistance: 220Ω, 470Ω, 1kΩ, 4.7kΩ
+- Measurement Point: Vin = 12V
+
+### Circuit Diagram
+![Circuit](images/W02_D06_Circuit.png)
+
+### Load Resistance Sweep
+![Load Sweep](images/W02_D06_LoadSweep.png)
+
+### Measurement Results
+![Measurements](images/W02_D06_Measurement.png)
+
+| Rload | Vout (V) | Iload (mA) | Izener (mA) |
+|---|---:|---:|---:|
+| 220Ω | 3.826 | 17.391 | ≈0 |
+| 470Ω | 5.101 | 10.853 | 3.827 |
+| 1kΩ | 5.135 | 5.135 | 9.470 |
+| 4.7kΩ | 5.153 | 1.096 | 13.473 |
+
+### Power Dissipation Analysis
+
+| Rload | Series Resistor Power (mW) | Zener Power (mW) |
+|---|---:|---:|
+| 220Ω | 142.16 | ≈0 |
+| 470Ω | 101.28 | 19.52 |
+| 1kΩ | 100.26 | 48.63 |
+| 4.7kΩ | 99.76 | 69.42 |
+
+### Conclusion
+- The Zener diode maintained an output near 5.1V for load resistances of 470Ω and above at Vin = 12V.
+- At 220Ω, the load current demand prevented the Zener diode from entering its regulation region.
+- Increasing load resistance reduced load current but increased Zener current and power dissipation.
+- Zener voltage regulators require careful selection of series resistance and verification of component power ratings.
+
+**Limitation:** Results are based on an LTspice diode model. Physical measurements, maximum input voltage, no-load conditions, and thermal performance have not yet been verified.
+
 
