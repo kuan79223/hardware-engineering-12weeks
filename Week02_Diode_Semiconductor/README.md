@@ -62,3 +62,33 @@ Compare the forward voltage and current characteristics of a silicon diode (1N41
 The experiment demonstrates the importance of current-limiting resistors in diode circuits. Different diode types exhibit different forward voltage characteristics, which directly affect circuit current.
 
 All results were obtained through LTspice simulation.
+
+
+## D03 - Half-Wave Rectifier
+
+### Objective
+Simulate a half-wave rectifier using a 1N4007 diode and analyze its output waveform.
+
+### Circuit Parameters
+- Input: SINE(0 10 60)
+- Diode: 1N4007
+- Load: 1 kOhm
+- Transient analysis: 100 ms
+
+### Simulation Results
+| Parameter | Result |
+|---|---|
+| Input peak voltage | 10 V |
+| Output peak voltage | 9.331189 V |
+| Average output voltage | 2.867531 V |
+| Estimated diode forward drop at peak | 0.668811 V |
+
+### Circuit
+![Circuit](images/W02_D03_Circuit.png)
+
+### Waveform and Measurements
+![Waveform](images/W02_D03_Waveform_Measurement.png)
+
+### Conclusion
+The 1N4007 diode conducts during the positive half-cycle and blocks the negative half-cycle. The output is a pulsating DC waveform with a lower peak voltage due to the diode's forward voltage drop.
+
