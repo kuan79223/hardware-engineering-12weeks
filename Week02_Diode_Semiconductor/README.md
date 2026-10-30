@@ -92,3 +92,49 @@ Simulate a half-wave rectifier using a 1N4007 diode and analyze its output wavef
 ### Conclusion
 The 1N4007 diode conducts during the positive half-cycle and blocks the negative half-cycle. The output is a pulsating DC waveform with a lower peak voltage due to the diode's forward voltage drop.
 
+
+## D04 - Full-Wave Bridge Rectifier
+
+### Objective
+Simulate a full-wave bridge rectifier using four 1N4007 diodes and compare its performance with a half-wave rectifier.
+
+### Circuit Parameters
+- Input: SINE(0 10 60)
+- Diodes: 4 × 1N4007
+- Load Resistance: 1 kOhm
+- Transient Analysis: 100 ms
+
+### Simulation Results
+
+| Parameter | Result |
+|---|---|
+| Input Peak Voltage | 10 V |
+| Output Peak Voltage | 8.667969 V |
+| Average Output Voltage | 5.135337 V |
+| Output Ripple Frequency | 120 Hz |
+| Estimated Diode Forward Drop | 0.666016 V per diode |
+
+### Comparison with D03
+
+| Parameter | Half-Wave | Full-Wave |
+|---|---|---|
+| Peak Voltage | 9.3312 V | 8.6680 V |
+| Average Voltage | 2.8675 V | 5.1353 V |
+| Ripple Frequency | 60 Hz | 120 Hz |
+
+The full-wave rectifier increased the average output voltage by approximately 79.1% compared with the half-wave rectifier.
+
+### Circuit
+![Circuit](images/W02_D04_Circuit.png)
+
+### Waveform and Measurements
+![Waveform](images/W02_D04_Waveform_Measurement.png)
+
+### Conclusion
+The full-wave bridge rectifier converts both positive and negative AC half-cycles into a positive pulsating output.
+
+The average output voltage is higher than that of the half-wave rectifier, while the peak voltage is slightly lower due to two conducting diodes in each current path.
+
+A smoothing capacitor will be investigated in a subsequent experiment.
+
+
