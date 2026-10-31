@@ -218,3 +218,101 @@ Investigate Zener diode voltage regulation under different load resistance condi
 **Limitation:** Results are based on an LTspice diode model. Physical measurements, maximum input voltage, no-load conditions, and thermal performance have not yet been verified.
 
 
+---
+
+## W02_D07 – NPN BJT Transistor Switching Characteristics
+
+### Objective
+
+Investigate the cutoff and saturation characteristics of a 2N3904 NPN BJT transistor using LTspice transient analysis.
+
+Measure base-emitter voltage (VBE), collector-emitter voltage (VCE), base current (IB), and collector current (IC) to verify transistor switching behavior.
+
+### Simulation Setup
+
+- Simulator: LTspice
+- Transistor: 2N3904 (NPN BJT)
+- Supply Voltage (VCC): 5V
+- Base Resistor (RB): 10kΩ
+- Collector Resistor (RC): 1kΩ
+- Input: PULSE(0 5 0 1u 1u 5m 10m)
+- Transient Analysis: `.tran 0 30m 0 10u`
+
+### Circuit Diagram
+
+![NPN BJT Switching Circuit](images/W02_D07_Circuit.png)
+
+### Transient Waveforms
+
+![NPN BJT Switching Waveforms](images/W02_D07_Waveforms.png)
+
+The simulation demonstrates inverted switching behavior:
+
+- Vin = 5V: The transistor turns ON, and Vout approaches 0V.
+- Vin = 0V: The transistor turns OFF, and Vout approaches 5V.
+
+### Measurement Results
+
+| Parameter | LTspice Result |
+|---|---:|
+| VBE (ON) | 0.71496423 V |
+| VCE (ON) | 0.039341046 V |
+| IB (ON, magnitude) | 0.42850 mA |
+| IC (ON) | 4.9606693 mA |
+| IC (OFF) | Approximately 0 A |
+| Forced Current Gain | 11.58 |
+
+Measurements were taken from steady-state portions of the transient waveforms.
+
+### Cursor Measurements
+
+**1. Base-Emitter Voltage (VBE)**
+
+![VBE Measurement](images/W02_D07_Cursor_Measurements_Vb.png)
+
+**2. Collector-Emitter Voltage (VCE)**
+
+![VCE Measurement](images/W02_D07_Cursor_Measurements_Vout.png)
+
+**3. Base Current (IB)**
+
+![Base Current Measurement](images/W02_D07_Cursor_Measurements_IR1.png)
+
+**4. Additional Current Measurements**
+
+[View IB and IC Cursor Measurements](images/W02_D07_Cursor_Measurements_IR1&IR2.png)
+
+Note: The two cursors in the additional screenshot are attached to different current traces. Their difference is not a same-signal ON/OFF current measurement.
+
+### Forced Current Gain Calculation
+
+The forced current gain in saturation is calculated as:
+
+```text
+Beta_forced = |IC| / |IB|
+
+Beta_forced = 4.9606693 / 0.42850124
+
+Beta_forced ≈ 11.58
+```
+
+This is the forced current gain under saturated switching conditions, not the transistor's forward-active DC current gain (hFE).
+
+### Analysis
+
+1. The transistor operates as an inverting low-side switch.
+2. A base-emitter voltage of approximately 0.715V allows base current to flow.
+3. The measured VCE of approximately 39.34mV is consistent with saturated operation.
+4. The collector current is primarily limited by VCC, RC, and VCE during saturation.
+5. When the base drive is removed, the transistor enters cutoff and collector current becomes negligible.
+
+### Conclusion
+
+The LTspice simulation successfully demonstrated the cutoff and saturation behavior of a 2N3904 NPN BJT transistor.
+
+A small base current controlled a larger collector current, confirming the operation of a BJT as an electronic switch.
+
+**Limitation:** Results are based on the LTspice transistor model. Physical measurements, device variations, temperature effects, and switching-time performance have not yet been verified.
+
+
+
