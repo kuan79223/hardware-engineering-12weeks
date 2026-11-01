@@ -1,3 +1,19 @@
+# Week 02：二極體與基礎半導體電路
+
+本週使用 LTspice 練習二極體、整流濾波、齊納穩壓、BJT 與 MOSFET 電路。
+
+## 實驗索引
+
+| 編號 | 實驗名稱 | 實驗紀錄 |
+|---|---|---|
+| D01～D07 | 二極體、整流、濾波、Zener、BJT 開關 | [查看下方既有紀錄](#w02_d01--diode-iv-characteristics) |
+| D08 | NMOS 開關特性與 BJT 比較 | [查看獨立實驗](W02_D08_NMOS_Switch/README.md) |
+| D09 | NPN BJT 共射極放大器 | [查看獨立實驗](W02_D09_CommonEmitter_Amplifier/README.md) |
+
+---
+
+
+
 ## W02_D01 — Diode I–V Characteristics
 
 **Objective:** Analyze the forward and reverse bias characteristics of a 1N4148 diode using LTspice DC Sweep.
@@ -315,18 +331,6 @@ A small base current controlled a larger collector current, confirming the opera
 **Limitation:** Results are based on the LTspice transistor model. Physical measurements, device variations, temperature effects, and switching-time performance have not yet been verified.
 
 
-# Week 02：二極體與基礎半導體電路
 
-本週使用 LTspice 練習二極體、整流濾波、齊納穩壓、BJT 與 MOSFET 電路。
-
-## 實驗索引
-
-| 編號 | 實驗名稱 | 實驗紀錄 |
-|---|---|---|
-| D01～D07 | 二極體、整流、濾波、Zener、BJT 開關 | [查看下方既有紀錄](#w02_d01--diode-iv-characteristics) |
-| D08 | NMOS 開關特性與 BJT 比較 | [查看獨立實驗](W02_D08_NMOS_Switch/README.md) |
-| D09 | NPN BJT 共射極放大器 | [查看獨立實驗](W02_D09_CommonEmitter_Amplifier/README.md) |
-
----
   
 
