@@ -6,7 +6,8 @@
 
 | 編號 | 實驗名稱 | 實驗紀錄 |
 |---|---|---|
-| D01～D06 | 二極體、整流、濾波、Zener | [查看下方既有紀錄](#w02_d01--diode-iv-characteristics) |
+| D01～D05 | 二極體、整流與濾波電路 | [查看下方既有紀錄](#w02_d01--diode-iv-characteristics) |
+| D06 | 齊納二極體穩壓電路 | [查看獨立實驗](W02_D06_Zener_Regulator/README.md) |
 | D07 | NPN BJT 開關特性 | [查看獨立實驗](W02_D07_NPN_BJT_Switch/README.md) |
 | D08 | NMOS 開關特性與 BJT 比較 | [查看獨立實驗](W02_D08_NMOS_Switch/README.md) |
 | D09 | NPN BJT 共射極放大器 | [查看獨立實驗](W02_D09_CommonEmitter_Amplifier/README.md) |
